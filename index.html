@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1 id="heading">Welcome to My Website</h1>
+    <p id="content">This is the home page</p>
+    
+    <button onclick="changeLanguage('en')">English</button>
+    <button onclick="changeLanguage('ar')">Arabic</button>
+
+    <script>
+        function changeLanguage(lang) {
+            fetch(`${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('heading').innerText = data.heading;
+                    document.getElementById('content').innerText = data.content;
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+    </script>
+</body>
+</html>
